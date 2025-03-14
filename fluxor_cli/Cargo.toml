@@ -1,0 +1,18 @@
+[package]
+name = "fluxor_cli"
+version = "0.1.0"
+authors = ["Montasir Mirghani <me@montasir.site>"]
+edition = "2024"
+description = "Fluxor CLI: a command-line tool that allows developers to quickly and efficiently create project starters for the Fluxor web framework."
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/dr-montasir/fluxor/fluxor_cli"
+repository = "https://github.com/dr-montasir/fluxor/fluxor_cli"
+readme = "README.md"
+keywords = ["fluxor", "cli", "web", "framework", "data-science"]
+categories = ["command-line-utilities", "network-programming", "asynchronous", "web-programming", "data-structures"]
+exclude = ["Cargo.lock", "DEV-INFO.md"]
+
+[dependencies]
+cargo_metadata = "0.19.2"
+clap = { version = "4.5.32", features = ["derive"] }
+regex = "1.11.1"

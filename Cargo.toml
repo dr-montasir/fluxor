@@ -1,0 +1,44 @@
+[package]
+name = "fluxor"
+version = "0.1.0"
+authors = ["Montasir Mirghani <me@montasir.site>"]
+edition = "2024"
+description = "Fluxor is a versatile Rust web framework designed for data science and computing science applications."
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/dr-montasir/fluxor"
+repository = "https://github.com/dr-montasir/fluxor"
+readme = "README.md"
+keywords = ["fluxor", "async", "framework", "web", "data-science"]
+categories = [
+  "network-programming",
+  "asynchronous",
+  "web-programming::http-server",
+  "web-programming::http-client",
+  "data-structures"
+]
+
+exclude = [
+  ".env",
+  "Cargo.lock",
+  "DEV-INFO.md",
+  "fluxor-icon-64x64.svg",
+  "fluxor-logo-dark-66x82.svg",
+  "fluxor-logo-light-66x82.svg",
+  "fluxor-website/*"
+]
+
+[dependencies]
+fluxio = { version = "0.5.0", features = ["runtime", "http1", "server"] }
+tokio = { version = "1.44.1", features = ["full"] }
+dotenv = "0.15.0"
+url = "2.5.4"
+wtime = "0.6.0"
+tokio-postgres = "0.7.13"
+redis = "0.29.1"
+mongodb = "3.2.2"
+serde = "1.0.219"
+serde_json = "1.0.140"
+fluxor_cli = {path = "./fluxor_cli"}
+cans = "1.1.0"
+mathlab = "1.3.0"
+styledlog = "0.2.1"
