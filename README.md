@@ -20,7 +20,7 @@
     </a>
 </div>
 
-**Fluxor** is a versatile Rust web framework designed for data science and  computing science applications. Inspired by frameworks like Express.js,  Flask, and Shine (R), Fluxor provides a robust environment to develop  applications that require efficient data handling and server management.
+**Fluxor** is a versatile Rust web framework designed for data science and computing science applications. Inspired by frameworks like Express.js, Flask, and Shiny, Fluxor provides a robust environment for developing applications that require efficient data handling and server management.
 
 ## Table of Contents
 

@@ -1,6 +1,6 @@
 [package]
 name = "fluxor"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Montasir Mirghani <me@montasir.site>"]
 edition = "2024"
 description = "Fluxor is a versatile Rust web framework designed for data science and computing science applications."
@@ -24,7 +24,7 @@ exclude = [
   "fluxor-icon-64x64.svg",
   "fluxor-logo-dark-66x82.svg",
   "fluxor-logo-light-66x82.svg",
-  "fluxor-website/*"
+  "fluxor_cli/*"
 ]
 
 [dependencies]

@@ -197,5 +197,8 @@ pub mod prelude {
     // external modules
     // Use Math Module
     pub use crate::math;
+
+    // Use tokio Crate
+    pub use tokio;
 }
 
