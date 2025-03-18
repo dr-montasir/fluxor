@@ -199,7 +199,7 @@ fn hello(_req: Req, _params: Params) -> Reply {
 async fn main() {
     let mut app = Fluxor::new();							// Initialize the application.
     app.route("/", GET, hello);								// Set the route (path, method, handler).
-    server.route("/http-client", GET, serve_http_client);  	// A simple http client to test your application.
+    app.route("/http-client", GET, serve_http_client);  	// A simple http client to test your application.
     app.run("127.0.0.1", "8080").await;						// Start the HTTP server (host, port).
 }
     
