@@ -77,7 +77,7 @@ If you prefer to use the Fluxor CLI to create a new project, you can do so with 
 
 ```terminal
 
-cargo install fluxor
+cargo install fluxor_cli
 
 ```
 
