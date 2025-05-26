@@ -29,8 +29,8 @@
 - [Documentation](#documentation)
 - [Modules](#modules)
 - [Roadmap](#roadmap)
-- [CLI - Fluxor](#cli---fluxor)
 - [Examples](#examples)
+- [Fluxor - CLI](#fluxor---cli)
 - [Logo Definition and Meaning](#logo-definition-and-meaning)
 - [Contributing](#contributing)
 - [License](#license)
@@ -134,20 +134,6 @@ Fluxor is organized into several key modules:
 - **More Examples and Scenarios**: Add more examples and scenarios in `fluxor_cli` to help developers understand how to utilize the framework effectively.
 - **Middleware Enhancements**: Already implemented additional features for handling request parameters (e.g., `req.params.extra`), similar to database integration. Future releases will aim to add more middleware functions to enhance Fluxor’s capabilities.
 
-## CLI - Fluxor
-
-The `fluxor_cli` allows users to quickly scaffold new Fluxor projects. Here's how to utilize it:
-
-```terminal
-      
-fluxor new <project_name> --version <version> --example <template-name>
-    
-```
-
-- **project_name**: The name of your new project.
-- **version**: The version of Fluxor to use (default is 'latest').
-- **example-name**: Choose between example templates like `helloworld` or `helloworld-api`.
-
 ## Examples
 
 ### Hello World Example
@@ -228,6 +214,38 @@ async fn main() {
     server.route("/http-client", GET, serve_http_client);  	// A simple HTTP client to test your application.
     server.run("127.0.0.1", "8080").await;              	// Start the HTTP server (host, port).
 }
+```
+
+## Fluxor - CLI
+
+The `fluxor_cli` allows users to quickly scaffold new Fluxor projects. Here's how to utilize it:
+
+```terminal
+      
+fluxor new <project_name> --version <version> --example <template-name>
+    
+```
+
+- **project_name**: The name of your new project.
+- **version**: The version of Fluxor to use (default is 'latest').
+- **example-name**: Choose between example templates like `helloworld` or `helloworld-api`.
+
+### All Fluxor CLI Examples
+
+### 1. Hello World
+- helloworld
+- helloworld-api
+- helloworld-api-server
+
+### 2. Routes
+- routes
+
+Use the example name after the flag --example (e.g., `helloworld`):
+
+```terminal
+fluxor new my_project --version latest --example helloworld
+
+fluxor new my_app --version latest --example routes
 ```
 
 ## Logo Definition and Meaning

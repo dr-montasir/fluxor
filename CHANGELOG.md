@@ -1,3 +1,7 @@
+## v0.4.0
+
+- Added fluxor cli (routes example)
+
 ## v0.3.0
 
 - Removed main.rs.
