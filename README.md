@@ -239,6 +239,7 @@ fluxor new <project_name> --version <version> --example <template-name>
 
 ### 2. Routes
 - routes
+- routes-project
 
 Use the example name after the flag --example (e.g., `helloworld`):
 
@@ -246,6 +247,8 @@ Use the example name after the flag --example (e.g., `helloworld`):
 fluxor new my_project --version latest --example helloworld
 
 fluxor new my_app --version latest --example routes
+
+fluxor new routes_app --version latest --example routes-project
 ```
 
 ## Logo Definition and Meaning

@@ -1,3 +1,7 @@
+## v0.5.0
+
+- Added fluxor cli (routes-project example)
+
 ## v0.4.0
 
 - Added fluxor cli (routes example)
