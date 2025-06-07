@@ -1,6 +1,6 @@
 [package]
 name = "fluxor"
-version = "0.5.0"
+version = "0.6.0"
 authors = ["Montasir Mirghani <me@montasir.site>"]
 edition = "2024"
 description = "Fluxor is a versatile Rust web framework designed for data science and computing science applications."
@@ -33,7 +33,7 @@ dotenv = "0.15.0"
 url = "2.5.4"
 wtime = "0.6.0"
 tokio-postgres = "0.7.13"
-redis = "0.31.0"
+redis = "0.32.0"
 mongodb = "3.2.3"
 serde = "1.0.219"
 serde_json = "1.0.140"

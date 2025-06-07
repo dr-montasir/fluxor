@@ -16,7 +16,21 @@
        <img alt="license" src="https://img.shields.io/badge/license-apache_2.0-4a98f7.svg?style=for-the-badge&labelColor=555555&logo=apache" height="22">
     </a>
     <a href="https://choosealicense.com/licenses/mit" target="_blank">
-       <img alt="license" src="https://img.shields.io/badge/license-mit-4a98f7.svg?style=for-the-badge&labelColor=555555" height="22">
+       <img alt="license" src="https://img.shields.io/badge/license-mit-4a98f7.svg?style=for-the-badge&labelColor=555555&logo=apache" height="22">
+    </a>
+    <a href="https://crates.io/crates/fluxor" target="_blank">
+        <img 
+            alt="downloads" 
+            src="https://img.shields.io/crates/d/fluxor.svg?style=for-the-badge&labelColor=555555&logo=&color=428600"
+            height="22"
+        >
+    </a>
+    <a href="https://deps.rs/crate/fluxor" target="_blank">
+        <img 
+            alt="Dependency Status" 
+            src="https://deps.rs/crate/fluxor/latest/status.svg?style=for-the-badge"
+            height="22"
+        >
     </a>
 </div>
 
@@ -222,7 +236,7 @@ The `fluxor_cli` allows users to quickly scaffold new Fluxor projects. Here's ho
 
 ```terminal
       
-fluxor new <project_name> --version <version> --example <template-name>
+fluxor new <project_name> --version <version> --example <example-name>
     
 ```
 
@@ -241,6 +255,9 @@ fluxor new <project_name> --version <version> --example <template-name>
 - routes
 - routes-project
 
+### 3. Assets
+- assets
+
 Use the example name after the flag --example (e.g., `helloworld`):
 
 ```terminal
@@ -249,6 +266,8 @@ fluxor new my_project --version latest --example helloworld
 fluxor new my_app --version latest --example routes
 
 fluxor new routes_app --version latest --example routes-project
+
+fluxor new assets_example --version latest --example assets
 ```
 
 ## Logo Definition and Meaning

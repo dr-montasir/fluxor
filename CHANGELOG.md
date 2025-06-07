@@ -1,3 +1,9 @@
+## v0.6.0
+
+- Added fluxor cli (assets example)
+- Updated:
+    - redis (0.31.0 -> 0.32.0).
+
 ## v0.5.0
 
 - Added fluxor cli (routes-project example)
