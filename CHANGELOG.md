@@ -1,6 +1,14 @@
+## v0.6.1
+
+- Modified fluxor cli (assets example).
+- Updated:
+    - tokio (v1.45.1 -> v1.46.1).
+    - redis (0.32.0 -> 0.32.3).
+    - mongodb (3.2.3 -> 3.2.4).
+
 ## v0.6.0
 
-- Added fluxor cli (assets example)
+- Added fluxor cli (assets example).
 - Updated:
     - redis (0.31.0 -> 0.32.0).
 
