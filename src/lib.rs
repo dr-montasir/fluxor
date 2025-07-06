@@ -80,8 +80,8 @@
 //! ### Hello World Example
 //! 
 //! A basic Fluxor application that responds with "Hello, World!" when accessed via a web browser.
-//! 
-//! ```rust
+//!
+//! ```no_run
 //!       
 //! use fluxor::prelude::*;
 //! 
@@ -93,21 +93,21 @@
 //!             .unwrap())
 //!     })
 //! }
-//! 
+//!       
 //! #[tokio::main]
 //! async fn main() {
 //!     let mut app = Fluxor::new();			// Initialize the application.
 //!     app.route("/", GET, hello);				// Set the route (path, method, handler).
 //!     app.run("127.0.0.1", "8080").await;		// Start the HTTP server (host, port).
 //! }
-//!     
+//!       
 //! ```
-//! 
+//!
 //! ### API Examples
 //! 
 //! A simple Fluxor API endpoint that returns a JSON response (method: GET).
-//! 
-//! ```rust
+//!
+//! ```no_run
 //!       
 //! use fluxor::prelude::*;
 //! 
@@ -131,10 +131,11 @@
 //! }
 //!     
 //! ```
-//! 
+//!       
 //! A simple Fluxor API endpoint that returns a JSON response (method: POST).
-//! 
-//! ```rust
+//!
+//! ```no_run
+//!       
 //! use fluxor::prelude::*;
 //! 
 //! fn hello(_req: Req, _params: Params) -> Reply {
