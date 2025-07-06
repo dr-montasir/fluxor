@@ -1,3 +1,8 @@
+## v0.7.0
+
+- Added fluxor cli (dotenv example).
+- Modified fluxor cli (all examples).
+
 ## v0.6.1
 
 - Modified fluxor cli (assets example).

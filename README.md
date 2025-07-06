@@ -258,6 +258,9 @@ fluxor new <project_name> --version <version> --example <example-name>
 ### 3. Assets
 - assets
 
+### 4. DotEnv
+- dotenv
+
 Use the example name after the flag --example (e.g., `helloworld`):
 
 ```terminal
@@ -268,6 +271,8 @@ fluxor new my_app --version latest --example routes
 fluxor new routes_app --version latest --example routes-project
 
 fluxor new assets_example --version latest --example assets
+
+fluxor new dotenv_example --version latest --example dotenv
 ```
 
 ## Logo Definition and Meaning
