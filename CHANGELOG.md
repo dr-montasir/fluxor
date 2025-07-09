@@ -1,3 +1,7 @@
+## v0.7.1
+
+- Added fluxor cli (cans-template-engine example).
+
 ## v0.7.0
 
 - Added fluxor cli (dotenv example).
