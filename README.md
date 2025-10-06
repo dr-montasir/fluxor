@@ -36,7 +36,7 @@
 
 **Fluxor** is a versatile Rust web framework designed for data science and computing science applications. Inspired by frameworks like Express.js, Flask, and Shiny, Fluxor provides a robust environment for developing applications that require efficient data handling and server management.
 
-<a href="https://github.com/dr-montasir/fluxor/blob/main/CHANGELOG.md" target="_blank">SEE CHANGELOG</a>
+<a href="https://github.com/dr-montasir/fluxor/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">SEE CHANGELOG</a>
 
 ## Table of Contents
 
