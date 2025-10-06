@@ -33,8 +33,9 @@
         >
     </a>
 </div>
-
 **Fluxor** is a versatile Rust web framework designed for data science and computing science applications. Inspired by frameworks like Express.js, Flask, and Shiny, Fluxor provides a robust environment for developing applications that require efficient data handling and server management.
+
+<a href="https://github.com/dr-montasir/fluxor/blob/main/CHANGELOG.md" target="_blank">SEE CHANGELOG</a>
 
 ## Table of Contents
 
@@ -155,7 +156,6 @@ Fluxor is organized into several key modules:
 A basic Fluxor application that responds with "Hello, World!" when accessed via a web browser.
 
 ```rust
-      
 use fluxor::prelude::*;
 
 fn hello(_req: Req, _params: Params) -> Reply {
@@ -170,10 +170,9 @@ fn hello(_req: Req, _params: Params) -> Reply {
 #[tokio::main]
 async fn main() {
     let mut app = Fluxor::new();			// Initialize the application.
-    app.route("/", GET, hello);				// Set the route (path, method, handler).
+    app.route(GET, "/", hello);				// Set the route (method, path, handler).
     app.run("127.0.0.1", "8080").await;		// Start the HTTP server (host, port).
 }
-    
 ```
 
 ### API Examples
@@ -181,7 +180,6 @@ async fn main() {
 A simple Fluxor API endpoint that returns a JSON response (method: GET).
 
 ```rust
-      
 use fluxor::prelude::*;
 
 fn hello(_req: Req, _params: Params) -> Reply {
@@ -198,11 +196,10 @@ fn hello(_req: Req, _params: Params) -> Reply {
 #[tokio::main]
 async fn main() {
     let mut app = Fluxor::new();							// Initialize the application.
-    app.route("/", GET, hello);								// Set the route (path, method, handler).
-    app.route("/http-client", GET, serve_http_client);  	// A simple http client to test your application.
+    app.route(GET, "/", hello);								// Set the route (method, path, handler).
+    app.route(GET, "/http-client", serve_http_client);  	// A simple http client to test your application.
     app.run("127.0.0.1", "8080").await;						// Start the HTTP server (host, port).
-}
-    
+}   
 ```
 
 A simple Fluxor API endpoint that returns a JSON response (method: POST).
@@ -224,8 +221,8 @@ fn hello(_req: Req, _params: Params) -> Reply {
 #[tokio::main]
 async fn main() {
     let mut server = Fluxor::new();                     	// Initialize the application.
-    server.route("/", POST, hello);                     	// Set the route (path, method, handler).
-    server.route("/http-client", GET, serve_http_client);  	// A simple HTTP client to test your application.
+    server.route(POST, "/", hello);                     	// Set the route (method, path, handler).
+    server.route(GET, "/http-client", serve_http_client);  	// A simple HTTP client to test your application.
     server.run("127.0.0.1", "8080").await;              	// Start the HTTP server (host, port).
 }
 ```

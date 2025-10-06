@@ -1,3 +1,20 @@
+## v0.8.0
+
+- Functions changed:
+    - Started from version 0.8.0:
+        - The order of parameters in the route function has been updated from (path, method, handler) to (method, path, handler).
+        - This change improves code readability and consistency by placing the HTTP method first, aligning with common conventions and making it easier to group related methods together for clarity.
+- Crates updated:
+    - tokio (v1.46.1 -> v1.47.1).
+    - url (v2.5.4 -> v2.5.7).
+    - tokio-postgres (v0.7.13 -> v0.7.14).
+    - redis (0.32.3 -> 0.32.7).
+    - mongodb (3.2.4 -> 3.3.0).
+    - serde (1.0.219 -> 1.0.228).
+    - serde_json (1.0.140 -> 1.0.145).
+    - mathlab (1.3.0 -> 1.4.0).
+- Modified fluxor cli
+
 ## v0.7.1
 
 - Added fluxor cli (cans-template-engine example).

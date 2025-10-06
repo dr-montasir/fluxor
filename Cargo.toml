@@ -1,6 +1,6 @@
 [package]
 name = "fluxor"
-version = "0.7.1"
+version = "0.8.0"
 authors = ["Montasir Mirghani <me@montasir.site>"]
 edition = "2024"
 description = "Fluxor is a versatile Rust web framework designed for data science and computing science applications."
@@ -28,15 +28,15 @@ exclude = [
 
 [dependencies]
 fluxio = { version = "0.5.0", features = ["runtime", "http1", "server"] }
-tokio = { version = "1.46.1", features = ["full"] }
+tokio = { version = "1.47.1", features = ["full"] }
 dotenv = "0.15.0"
-url = "2.5.4"
+url = "2.5.7"
 wtime = "0.6.0"
-tokio-postgres = "0.7.13"
-redis = "0.32.3"
-mongodb = "3.2.4"
-serde = "1.0.219"
-serde_json = "1.0.140"
+tokio-postgres = "0.7.14"
+redis = "0.32.7"
+mongodb = "3.3.0"
+serde = "1.0.228"
+serde_json = "1.0.145"
 cans = "1.1.0"
-mathlab = "1.3.0"
+mathlab = "1.4.0"
 styledlog = "0.2.1"

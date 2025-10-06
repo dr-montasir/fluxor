@@ -110,13 +110,13 @@ impl Fluxor {
     /// 
     /// # Arguments
     /// 
-    /// * `path`: The path for the route.
     /// * `method`: The HTTP method for the route (GET, POST, etc.).
+    /// * `path`: The path for the route.
     /// * `handler`: A function that handles requests to that route.
     pub fn route(
         &mut self,
-        path: &str,
         method: fluxio::Method,
+        path: &str,
         handler: fn(Request<Body>, Params) -> Reply,
     ) {
         self.routes.push(Route {
