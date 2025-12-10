@@ -135,7 +135,7 @@ Fluxor is organized into several key modules:
 
 - **Core**: The backbone of the framework providing essential functionalities.
 - **Client**: A simple HTTP client built within the Fluxor framework for testing API endpoints, eliminating the need for external tools like Postman. This module allows developers to easily construct and send HTTP requests, view responses, and manage various request parameters, facilitating effective and streamlined API testing directly within the Fluxor environment.
-- **Data**: Modules for interacting with different data storage systems: MongoDB, PostgreSQL, and Redis.
+- **Data**: a module for interacting with the MySQL storage system. The framework is designed to work effectively with various types of databases; however, MySQL was selected for its popularity and to keep the crate lightweight.
 - **Encode**: A module for encoding and decoding data using Serde and Serde JSON. It provides functions to convert Rust data structures to JSON strings and back, facilitating data serialization and deserialization.
 - **Math**: Contains functionalities for performing mathematical computations.
 - **StyledLog**: Provides an efficient and aesthetically pleasing logging mechanism.

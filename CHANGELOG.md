@@ -1,3 +1,15 @@
+## v0.9.0
+
+- Crates updated:
+    - wtime (v0.6.0 -> v0.7.0).
+    - mathlab (v1.4.0 -> v1.5.0).
+- Modules / Crates removed:
+    - mongo / mongodb = "3.3.0" 
+    - psql / tokio-postgres = "0.7.14"
+    - redis / redis = "0.32.7"
+- Modules / Crates added:
+    - mysql / mysql_async = "0.36.1"
+
 ## v0.8.0
 
 - Functions changed:
