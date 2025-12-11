@@ -1,3 +1,8 @@
+## v0.9.1
+
+- Crates updated:
+    - cans (v1.1.0 -> v1.3.0).
+
 ## v0.9.0
 
 - Crates updated:
