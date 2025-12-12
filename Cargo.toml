@@ -1,6 +1,6 @@
 [package]
 name = "fluxor"
-version = "0.9.1"
+version = "0.9.2"
 authors = ["Montasir Mirghani <me@montasir.site>"]
 edition = "2024"
 description = "Fluxor is a versatile Rust web framework designed for data science and computing science applications."

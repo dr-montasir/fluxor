@@ -1,3 +1,7 @@
+## v0.9.2
+
+- Renamed mysql module to mysql_async (mysql_async = "0.36.1")
+
 ## v0.9.1
 
 - Crates updated:
