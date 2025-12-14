@@ -1,3 +1,9 @@
+## v0.9.3
+
+- Crates updated:
+    - serde (v1.0.228: features).
+    - serde_json (v1.0.145: features).
+
 ## v0.9.2
 
 - Renamed mysql module to mysql_async (mysql_async = "0.36.1")
