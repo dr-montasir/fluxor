@@ -136,7 +136,6 @@ Fluxor is organized into several key modules:
 - **Core**: The backbone of the framework providing essential functionalities.
 - **Client**: A simple HTTP client built within the Fluxor framework for testing API endpoints, eliminating the need for external tools like Postman. This module allows developers to easily construct and send HTTP requests, view responses, and manage various request parameters, facilitating effective and streamlined API testing directly within the Fluxor environment.
 - **Data**: a module for interacting with the MySQL storage system. The framework is designed to work effectively with various types of databases; however, MySQL was selected for its popularity and to keep the crate lightweight.
-- **Encode**: A module for encoding and decoding data using Serde and Serde JSON. It provides functions to convert Rust data structures to JSON strings and back, facilitating data serialization and deserialization.
 - **Math**: Contains functionalities for performing mathematical computations.
 - **StyledLog**: Provides an efficient and aesthetically pleasing logging mechanism.
 - **Cans**: An elegant and lightweight Rust-based literal template engine for managing web content, enhanced with a world module for streamlined access to regional and city information, as well as robust MIME type management.
@@ -206,11 +205,16 @@ async fn main() {
 A simple Fluxor API endpoint that returns a JSON response (method: POST).
 
 ```rust
-use fluxor::prelude::*;
+use fluxor::{cans::do_json, prelude::*};
 
 fn hello(_req: Req, _params: Params) -> Reply {
     boxed(async move {
-       let json_response = format!(r#"{{"message": "👋 Hello, World!"}}"#);
+       let json_response = do_json!(
+        r#"
+            {"message": "{{waving_hand_emoji}} Hello, World!"}
+        "#, 
+        waving_hand_emoji = "👋"
+    );
         
         Ok(Response::builder()
             .header("Content-Type", "application/json")

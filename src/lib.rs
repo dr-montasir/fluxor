@@ -183,9 +183,6 @@ pub mod styledlog;
 // Public Data Module
 pub mod data;
 
-// Public Encode Module
-pub mod encode;
-
 // Prelude Module
 #[allow(dead_code)]
 pub mod prelude {

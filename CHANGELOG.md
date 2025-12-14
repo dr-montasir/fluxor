@@ -1,3 +1,12 @@
+## v0.9.4
+
+- Crates removed:
+    - serde.
+    - serde_json.
+- Modules  removed:
+    - encode
+- README.md updated.
+
 ## v0.9.3
 
 - Crates updated:
