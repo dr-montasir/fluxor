@@ -198,5 +198,8 @@ pub mod prelude {
 
     // Use tokio Crate
     pub use tokio;
+
+    // Use cans Crate module content
+    pub use crate::cans::content::*;
 }
 

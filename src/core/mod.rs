@@ -26,6 +26,7 @@ pub type Reply = Pin<Box<dyn Future<Output = Result<fluxio::Response<fluxio::Bod
 pub struct Params {
     pub dir: Arc<PathBuf>,              // Directory path (required for application)
     pub extra: HashMap<String, String>, // Required and optional parameters
+    pub custom_404: Arc<String>,
 }
 
 /// Struct representing a route in the web server.
@@ -77,6 +78,7 @@ pub struct Fluxor {
     pub params: Params,                         // Parameters for the server
     pub routes: Vec<Route>,                     // List of routes
     pub mime_types: HashMap<String, String>,    // Store MIME types
+    pub custom_404_closure: Option<Arc<dyn Fn(&str) -> String + Send + Sync>>, // Closure for dynamic 404
 }
 
 impl Fluxor {
@@ -91,10 +93,19 @@ impl Fluxor {
             params: Params {
                 dir: Arc::new(PathBuf::new()),
                 extra: HashMap::new(),
+                custom_404: Arc::new(r#"<html><body><h1>404 Not Found</h1><p>404 Page Not Found.</p></body></html>"#.to_string()),
             },
             routes: Vec::new(),
             mime_types, // Set the initialized MIME types
+            custom_404_closure: None,
         }
+    }
+
+    pub fn set_custom_404<F>(&mut self, closure: F)
+    where
+        F: Fn(&str) -> String + Send + Sync + 'static,
+    {
+        self.custom_404_closure = Some(Arc::new(closure));
     }
 
     /// Sets the directory for static file serving.
@@ -158,12 +169,14 @@ impl Fluxor {
         let make_svc = make_service_fn(|_conn| {
             let params = self.params.clone();
             let routes = self.routes.clone();
-            let mime_types = self.mime_types.clone(); // Pass MIME types to the service
-            async {
+            let mime_types = self.mime_types.clone();
+            let custom_404_closure = self.custom_404_closure.clone();
+
+            async move {
                 Ok::<_, Infallible>(service_fn(move |req| {
                     let params = params.clone();
                     let routes = routes.clone();
-                    handle_request(req, params, routes, mime_types.clone()) // Pass the MIME types
+                    handle_request(req, params.clone(), routes.clone(), mime_types.clone(), custom_404_closure.clone())
                 }))
             }
         });
@@ -217,7 +230,7 @@ impl Fluxor {
 /// # Returns
 /// 
 /// A Result containing a Response with the file content or a 404 error.
-async fn serve_static_file(req: Req, params: &Params, mime_types: &HashMap<String, String>) -> Result<Response<Body>, Infallible> {
+async fn serve_static_file(req:  &Req, params: &Params, mime_types: &HashMap<String, String>) -> Result<Response<Body>, Infallible> {
     let path = params.dir.join(req.uri().path().trim_start_matches('/'));
     match async_fs::read(&path).await {
         Ok(content) => {
@@ -239,6 +252,109 @@ async fn serve_static_file(req: Req, params: &Params, mime_types: &HashMap<Strin
     }
 }
 
+/// Generates a 404 Not Found response, optionally using a custom closure to create dynamic content.
+///
+/// This function constructs a `Response<Body>` with a 404 status code. It determines the preferred
+/// content type based on the `Accept` header of the incoming request, supporting `application/json`,
+/// `text/html`, and plain text as fallback. If a custom closure is set in the server, it is used
+/// to generate the response body; otherwise, a default message is returned.
+///
+/// # Arguments
+/// 
+/// * `req` - A reference to the incoming HTTP request, used to inspect headers for content negotiation.
+/// * `_params` - A reference to the server parameters, which may include configuration details.
+/// * `custom_closure` - An `Option` containing an `Arc`-wrapped closure that takes a `&str` (content type)
+///   and returns a `String`. This closure, if provided, dynamically generates the response body.
+///
+/// # Returns
+/// 
+/// A `Response<Body>` with status code 404, appropriate `Content-Type`, and body content generated
+/// either by the custom closure or a default message.
+/// 
+/// # Examples
+/// 
+/// ```rust
+/// use fluxor::prelude::*;
+/// 
+/// #[tokio::main]
+/// async fn main() {
+///     let mut app = Fluxor::new();
+/// 
+///     // Set custom 404 handler with closure
+///     app.set_custom_404(|content_type| {
+///         match content_type {
+///             "application/json" => r#"{"error": {"code": 404, "message": "Not Found."}}"#.to_string(),
+///             "text/html" => "<html><body><h1>404 - Page Not Found</h1></body></html>".to_string(),
+///             _ => "404 Resource Not Found.".to_string(),
+///         }
+///     });
+/// }
+/// ```
+/// 
+/// ## Using cans template
+/// 
+/// ```rust
+/// use fluxor::prelude::*;
+/// 
+/// #[tokio::main]
+/// async fn main() {
+///     let mut app = Fluxor::new();
+/// 
+///     // Set custom 404 handler with closure
+///     app.set_custom_404(|content_type| {
+///         match content_type {
+///             "application/json" => do_json!(r#"{"error": {"code": 404, "message": "Not Found."}}"#,),
+///             "text/html" => do_html!(r#"<html><body><h1>404 - Page Not Found</h1></body></html>"#,),
+///             _ => do_text("404 Resource Not Found."),
+///         }
+///     });
+/// }
+/// ```
+fn not_found_response(req: &Req, _params: &Params, custom_closure: &Option<Arc<dyn Fn(&str) -> String + Send + Sync>>) -> Response<Body> {
+    // Get the Accept header
+    let accept_header = req.headers()
+        .get("Accept")
+        .and_then(|h| h.to_str().ok())
+        .unwrap_or("");
+
+    // Parse the Accept header into media types
+    let media_types: Vec<&str> = accept_header
+    .split(',')
+    .map(|s| s.trim()) // keep as &str
+    .collect();
+
+    // Determine the content type based on media types
+    let content_type = if media_types.iter().any(|mt| *mt == "application/json" || *mt == "application/*" || *mt == "*/*") {
+        "application/json"
+    } else if media_types.iter().any(|mt| *mt == "text/html" || *mt == "text/*" || *mt == "*/*") {
+        "text/html"
+    } else {
+        "text/plain"
+    };
+
+    // Use custom closure if set
+    if let Some(closure) = custom_closure {
+        let content = closure(content_type);
+        Response::builder()
+            .status(StatusCode::NOT_FOUND)
+            .header("Content-Type", content_type)
+            .body(Body::from(content))
+            .unwrap()
+    } else {
+        // fallback default content
+        let default_content = match content_type {
+            "application/json" => r#"{"error": {"code": 404, "message": "Not Found"}}"#,
+            "text/html" => "<html><body><h1>404 - Not Found</h1></body></html>",
+            _ => "404 Resource Not Found",
+        };
+        Response::builder()
+            .status(StatusCode::NOT_FOUND)
+            .header("Content-Type", content_type)
+            .body(Body::from(default_content))
+            .unwrap()
+    }
+}
+
 /// Unified request handler that processes incoming requests against defined routes.
 /// 
 /// # Arguments
@@ -256,6 +372,7 @@ async fn handle_request(
     params: Params,
     routes: Vec<Route>,
     mime_types: HashMap<String, String>, // Add MIME types to parameters
+    custom_closure: Option<Arc<dyn Fn(&str) -> String + Send + Sync>>,
 ) -> Result<Response<Body>, Infallible> {
     for route in routes.iter() {
         if route.method == *req.method() {
@@ -278,7 +395,17 @@ async fn handle_request(
     }
 
     // If no route matches, serve static files or return 404
-    serve_static_file(req, &params, &mime_types).await
+    // serve_static_file(req, &params, &mime_types).await
+    // let static_file_response = serve_static_file(req.clone(), &params, &mime_types).await?;  // .clobne() error here. How to correct ?
+    // let static_file_response = serve_static_file(req, &params, &mime_types).await?;  // .clobne() error here. How to correct ?
+    let static_file_response = serve_static_file(&req, &params, &mime_types).await?;
+    
+    if static_file_response.status() == StatusCode::OK {
+        Ok(static_file_response)
+    } else {
+        // Pass the params struct here!
+         Ok(not_found_response(&req, &params, &custom_closure))
+    }
 }
 
 /// Extracts query parameters from an incoming request.

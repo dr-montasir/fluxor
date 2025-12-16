@@ -205,7 +205,7 @@ async fn main() {
 A simple Fluxor API endpoint that returns a JSON response (method: POST).
 
 ```rust
-use fluxor::{cans::do_json, prelude::*};
+use fluxor::prelude::*;
 
 fn hello(_req: Req, _params: Params) -> Reply {
     boxed(async move {
