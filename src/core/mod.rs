@@ -395,9 +395,6 @@ async fn handle_request(
     }
 
     // If no route matches, serve static files or return 404
-    // serve_static_file(req, &params, &mime_types).await
-    // let static_file_response = serve_static_file(req.clone(), &params, &mime_types).await?;  // .clobne() error here. How to correct ?
-    // let static_file_response = serve_static_file(req, &params, &mime_types).await?;  // .clobne() error here. How to correct ?
     let static_file_response = serve_static_file(&req, &params, &mime_types).await?;
     
     if static_file_response.status() == StatusCode::OK {
