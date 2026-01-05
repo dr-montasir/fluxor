@@ -1,3 +1,21 @@
+## v1.0.0
+
+- Added Examples:
+    - fluxor (fluxor-template).
+- Updated crates:
+    - tokio (v1.47.1 => v1.49.0).
+    - 2.5.7 (v2.5.7 => 2.5.8).
+- Updated Fluxor CLI Dependencies:
+    - clap (v4.5.48 => v4.5.54).
+    - regex (v1.11.3 => v1.12.2).
+- Updated Fluxor CLI:
+    - Added (lib) get_crate_version function.
+    - Added (utils) copy_folder_dir function.
+    - Added (metadata) create_license function.
+    - Updated README.md.
+    - Examples updated.
+- The website developed and published at https://fluxor.one.
+
 ## v0.9.5
 
 - Updated Fluxor Core Module:

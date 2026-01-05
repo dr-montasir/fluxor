@@ -144,9 +144,26 @@ Fluxor is organized into several key modules:
 
 ## Roadmap
 
-- **Website**: Develop a dedicated website for Fluxor that showcases its features and provides resources for users.
+- **Website**: Develop a dedicated website for Fluxor that showcases its features and provides resources for users. 
+
+  **Started from version 1.0.0, the website was developed and published at [https://fluxor.one](https://fluxor.one/). Demo source code can be found via [fluxor_cli](https://crates.io/crates/fluxor_cli)**.
+
+  To install the Fluxor CLI, run:
+
+  ```shell
+  cargo install fluxor_cli
+  ```
+
+  Then, use the following command to create a complete Fluxor website template with full features:
+
+  ```shell
+  fluxor new fluxor_template --version latest --example fluxor-template
+  ```
+
 - **Comprehensive Documentation**: Expand the existing documentation to cover more use cases and detailed explanations of functionalities.
+
 - **More Examples and Scenarios**: Add more examples and scenarios in `fluxor_cli` to help developers understand how to utilize the framework effectively.
+
 - **Middleware Enhancements**: Already implemented additional features for handling request parameters (e.g., `req.params.extra`), similar to database integration. Future releases will aim to add more middleware functions to enhance Fluxor’s capabilities.
 
 ## Examples
