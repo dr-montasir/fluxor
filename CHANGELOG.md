@@ -1,3 +1,9 @@
+## v1.1.1
+
+- Updated Fluxio from v0.5.0 to v0.5.1.
+Note: To update the Fluxio crate, which is a major dependency module of the core Fluxor framework, we will update the PATCH version ("MAJOR.MINOR.PATCH") for each Fluxio dependency. This means updating one dependency crate at a time—such as moving from 0.5.0 to 0.5.1, then to 0.5.2, and so on—until all dependencies of the Fluxio crate have been updated.
+By adopting this approach, if any new PATCH version of Fluxio introduces issues, it will be easier to revert to the previous version, thereby ensuring that the Fluxor framework remains stable and crash-free.
+
 ## v1.1.0
 
 - Crates updated:
